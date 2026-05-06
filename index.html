@@ -1,102 +1,441 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RemeMisri - Light Luxury Jewelry</title>
+    <title>RemeMisri | Luxury Middle Eastern Jewelry</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', serif;
         }
         body {
-            background-color: #0a0a0a;
-            color: #fff;
-            line-height: 1.6;
+            font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+            background: #f8f5f0;
+            color: #4a443b;
+            line-height: 1.75;
+            font-weight: 400;
         }
-        /* 顶部导航 */
-        .navbar {
+        :root {
+            --gold: #b8a287;
+            --gold-light: #c9b9a3;
+            --cream: #f8f5f0;
+            --cream-dark: #efebe4;
+            --coffee: #4a443b;
+            --coffee-light: #7a7265;
+            --border-gold: rgba(184,162,135,0.22);
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        nav {
+            background: rgba(248,245,240,0.88);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid var(--border-gold);
+        }
+        nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(0,0,0,0.85);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 999;
+            height: 85px;
         }
-        .brand-logo {
-            height: 50px;
-            width: auto;
+        .logo-text {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--coffee);
+            letter-spacing: 3px;
         }
-        /* 全屏主视觉 */
+        .logo-text span {
+            color: var(--gold);
+            font-weight: 500;
+        }
         .hero {
-            width: 100%;
-            height: 100vh;
-            padding-top: 80px;
+            background: linear-gradient(rgba(30,26,20,0.35), rgba(30,26,20,0.45)),
+                        url("https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1920&q=80");
+            background-size: cover;
+            background-position: center;
+            height: 92vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
         }
-        .hero img {
+        .hero h1 {
+            font-size: clamp(30px, 5.5vw, 54px);
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+        .hero p {
+            font-size: clamp(15px, 1.8vw, 19px);
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 35px;
+            letter-spacing: 1.5px;
+            font-weight: 300;
+        }
+        .btn-gold {
+            display: inline-block;
+            padding: 13px 42px;
+            border: 1px solid var(--gold-light);
+            color: rgba(255,255,255,0.92);
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.5s ease;
+            border-radius: 1px;
+            background: transparent;
+            font-weight: 300;
+        }
+        .btn-gold:hover {
+            background: rgba(184,162,135,0.25);
+            color: #fff;
+            border-color: #fff;
+        }
+        section {
+            padding: 100px 0;
+        }
+        .bg-black-deep { background: #efebe4; }
+        .bg-black-mid { background: #f8f5f0; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            font-size: clamp(22px, 2.8vw, 32px);
+            letter-spacing: 3px;
+            color: var(--coffee);
+            font-weight: 400;
+        }
+        .section-title span {
+            color: var(--gold);
+            font-weight: 500;
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        @media (max-width:768px) {
+            .story-grid { grid-template-columns: 1fr; gap: 35px; }
+            section { padding: 70px 0; }
+            .container { padding: 0 20px; }
+        }
+        .story-text h3 {
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        .story-text p {
+            color: var(--coffee-light);
+            font-size: 16px;
+            line-height: 1.85;
+        }
+        .poster-row {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 35px;
+        }
+        @media (max-width:768px) {
+            .poster-row { grid-template-columns: 1fr; }
+        }
+        .poster-card {
+            background: #fff;
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(74,68,59,0.05);
+            transition: 0.4s ease;
+        }
+        .poster-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(74,68,59,0.09);
+        }
+        .poster-card img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: block;
+        }
+        .poster-card .desc {
+            padding: 22px;
+            text-align: center;
+            color: var(--coffee-light);
+            letter-spacing: 1px;
+            font-size: 15px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+        }
+        @media (max-width:768px) {
+            .cards { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width:480px) {
+            .cards { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: #fff;
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 10px rgba(74,68,59,0.04);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 8px 22px rgba(74,68,59,0.08);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
             object-fit: cover;
-            display: block;
         }
-        /* 品牌区域 */
-        .about {
-            padding: 80px 5%;
+        .card .txt {
+            padding: 22px;
             text-align: center;
-            background: #0a0a0a;
         }
-        .about-img img {
-            max-width: 100%;
-            border-radius: 8px;
-            display: block;
+        .card h4 {
+            color: var(--coffee);
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            font-size: 17px;
+        }
+        .card p {
+            color: var(--coffee-light);
+            font-size: 14px;
+        }
+        .amazon-box {
+            max-width: 950px;
             margin: 0 auto;
-        }
-        /* 产品区域 */
-        .products {
-            padding: 60px 5%;
+            background: #fff;
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            padding: 35px;
             text-align: center;
-            background: #111;
+            box-shadow: 0 2px 14px rgba(74,68,59,0.05);
         }
-        .product-card img {
+        .amazon-box img {
             max-width: 100%;
-            border-radius: 10px;
-            display: block;
-            margin: 0 auto;
+            border-radius: 2px;
+        }
+        .adv-list {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 30px;
+        }
+        @media (max-width:768px) {
+            .adv-list { grid-template-columns: 1fr; }
+        }
+        .adv-item {
+            background: #fff;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 2px 10px rgba(74,68,59,0.04);
+        }
+        .adv-item h4 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+        .adv-item p {
+            color: var(--coffee-light);
+            line-height: 1.8;
+        }
+        .adv-item .cn {
+            font-size: 12px;
+            color: var(--coffee-light);
+            opacity: 0.75;
+            margin-top: 4px;
+        }
+        footer {
+            background: #efebe4;
+            padding: 60px 0 35px;
+            text-align: center;
+            border-top: 1px solid var(--border-gold);
+        }
+        footer h3 {
+            font-size: 26px;
+            color: var(--coffee);
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+        footer p {
+            color: var(--coffee-light);
+            margin: 8px 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .copyright {
+            margin-top: 35px;
+            font-size: 13px;
+            color: #998f80;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
-    <!-- 顶部Logo -->
-    <div class="navbar">
-        <img src="https://raw.githubusercontent.com/rememisri-collab/rememisri-website/main/1.jpeg" 
-             loading="lazy" alt="RemeMisri Logo" class="brand-logo">
+<nav>
+    <div class="container">
+        <div class="logo-text">Reme<span>Misri</span></div>
     </div>
+</nav>
+<section class="hero">
+    <div class="container">
+        <h1>铭记所爱 思念长存</h1>
+        <p>Light Luxury by the Nile · Middle Eastern Aesthetics Jewelry</p>
+        <a href="#story" class="btn-gold">Explore Brand</a>
+    </div>
+</section>
 
-    <!-- 全屏主海报 -->
-    <section class="hero">
-        <img src="https://raw.githubusercontent.com/rememisri-collab/rememisri-website/main/2.jpeg" 
-             loading="lazy" alt="Main Poster">
-    </section>
-
-    <!-- 品牌故事 -->
-    <section class="about">
-        <div class="about-img">
-            <img src="https://raw.githubusercontent.com/rememisri-collab/rememisri-website/main/3.jpeg" 
-                 loading="lazy" alt="Brand Story">
+<section class="bg-black-mid" id="story">
+    <div class="container">
+        <h2 class="section-title">Brand <span>Story</span></h2>
+        <div class="story-grid">
+            <div class="story-text">
+                <h3>Reme · Remembrance</h3>
+                <p>Reme derives from Remember, standing for remembrance and collection. It preserves every precious moment and irreplaceable memory, locking the beauty of time forever.</p>
+                <p style="margin-top:12px;">Reme 取自英文 Remember，寓意铭记与珍藏，定格生命里所有温柔瞬间，封存时光美好。</p>
+            </div>
+            <div class="story-text">
+                <h3>Misri · Middle Eastern Soul</h3>
+                <p>Misri originates from Arabic مصري, meaning Egyptian & Ancient Egyptian style, carrying the mysterious elegance of the Nile and royal light luxury texture.</p>
+                <p style="margin-top:12px;">Misri 源自阿拉伯语，代表古埃及中东风情；谐音 Miss，寄托心底思念与牵挂，赋予品牌双重浪漫内核。</p>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 产品展示 -->
-    <section class="products">
-        <div class="product-card">
-            <img src="https://raw.githubusercontent.com/rememisri-collab/rememisri-website/main/4.jpeg" 
-                 loading="lazy" alt="Amazon Listing">
+<section class="bg-black-deep">
+    <div class="container">
+        <h2 class="section-title">Brand Poster <span>& VI Design</span></h2>
+        <div class="poster-row">
+            <div class="poster-card">
+                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80" alt="Luxury Jewelry">
+                <div class="desc">轻奢品牌海报 · Middle Eastern Luxury</div>
+            </div>
+            <div class="poster-card">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80" alt="Jewelry VI">
+                <div class="desc">品牌VI视觉系统 · Logo & Color System</div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<section class="bg-black-mid">
+    <div class="container">
+        <h2 class="section-title">Product <span>Categories</span></h2>
+        <div class="cards">
+            <!-- 1. 轻奢黄金首饰系列 → 黄金镯子 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=600&q=80" alt="Gold Jewelry">
+                <div class="txt">
+                    <h4>Light Luxury Gold</h4>
+                    <p>轻奢黄金首饰系列</p>
+                </div>
+            </div>
+            <!-- 2. 天然晶石珠宝系列 → 水晶手链 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80" alt="Gemstone">
+                <div class="txt">
+                    <h4>Natural Gemstone</h4>
+                    <p>天然晶石珠宝系列</p>
+                </div>
+            </div>
+            <!-- 3. 极简项链吊坠系列【已换成正常项链图】 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=600&q=80" alt="Minimalist Necklace">
+                <div class="txt">
+                    <h4>Minimalist Necklace</h4>
+                    <p>极简项链吊坠系列</p>
+                </div>
+            </div>
+            <!-- 4. 复古耳饰戒指系列 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80" alt="Earrings Rings">
+                <div class="txt">
+                    <h4>Earrings & Rings</h4>
+                    <p>复古耳饰戒指系列</p>
+                </div>
+            </div>
+            <!-- 5. 情侣纪念首饰系列【已换成情侣手链图】 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=600&q=80" alt="Couple Jewelry">
+                <div class="txt">
+                    <h4>Couple Memorial</h4>
+                    <p>情侣纪念首饰系列</p>
+                </div>
+            </div>
+            <!-- 6. 中东异域风配饰 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=600&q=80" alt="Middle Eastern">
+                <div class="txt">
+                    <h4>Middle Eastern Style</h4>
+                    <p>中东异域风配饰</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-black-deep">
+    <div class="container">
+        <h2 class="section-title">Amazon <span>Listing Display</span></h2>
+        <div class="amazon-box">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80" alt="Amazon Listing">
+            <p style="margin-top:20px; color:#7a7265;">适配亚马逊精品店铺 · 品牌备案专用视觉物料</p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-black-mid">
+    <div class="container">
+        <h2 class="section-title">Trademark <span>Advantages</span></h2>
+        <div class="adv-list">
+            <div class="adv-item">
+                <h4>Original Brand Name</h4>
+                <p>Original brand name with emotional & Middle Eastern dual roots, high-end recognition, no duplicate names globally, perfect for luxury cross-border business.</p>
+                <p class="cn">情感+中东双词根原创，高级辨识度，全球无撞名，适配轻奢出海。</p>
+            </div>
+            <div class="adv-item">
+                <h4>USPTO Registered R Mark</h4>
+                <p>Official USPTO class 14 registered trademark, clear ownership, ready for Amazon & independent website brand registration.</p>
+                <p class="cn">美国14类正规R标，权属干净无纠纷，可直接亚马逊&独立站备案。</p>
+            </div>
+            <div class="adv-item">
+                <h4>Middle Eastern Cultural Connotation</h4>
+                <p>Carries the aesthetics of ancient Egypt along the Nile, with profound storytelling and premium value beyond ordinary letter trademarks.</p>
+                <p class="cn">承载古埃及尼罗河畔美学，自带故事底蕴，远超普通字母商标溢价。</p>
+            </div>
+            <div class="adv-item">
+                <h4>Full Commercial Value</h4>
+                <p>Suitable for jewelry, watches, luxury accessories, ideal for brand acquisition, incubation, and long-term cross-border operation.</p>
+                <p class="cn">适配珠宝、腕表、轻奢配饰，适合品牌收购、孵化、跨境长线运营。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <h3>Reme<span style="color:#b8a287;">Misri</span></h3>
+        <p>One piece of jewelry, one eternal memory</p>
+        <p>一件珠宝 · 一份铭记 · 一缕异域 · 一生思念</p>
+        <p style="margin-top:15px;">Trademark Acquisition | Brand Cooperation</p>
+        <div class="copyright">
+            © 2026 RemeMisri All Rights Reserved | Luxury Middle Eastern Jewelry Brand
+        </div>
+    </div>
+</footer>
 </body>
 </html>
